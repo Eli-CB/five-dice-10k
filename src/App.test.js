@@ -2,7 +2,7 @@ import React from "react";
 import { Game } from "./Game";
 import { Interface } from "./Interface";
 import { YourResult } from "./YourResult";
-import { Ranking } from "./Ranking";
+import { Scoring } from "./Scoring";
 import "./App.css";
 
 class App extends React.Component {
@@ -73,7 +73,7 @@ class App extends React.Component {
           <YourResult allstates={this.state} />
         </div>
         <Game results={this.state} />
-        <Ranking
+        <Scoring
           wins={this.wins}
           losses={this.losses}
           draws={this.draws}

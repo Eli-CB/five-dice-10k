@@ -13,9 +13,9 @@ export const Interface = props => {
       <span style={{ cursor: "pointer" }} onClick={props.clearState}>
         Clear
       </span>
-      <div className="table" style={{ fontSize: "30px" }}>
-        You: {props.dice1} {props.dice2} {props.dice3} {props.dice4} {props.dice5}
-      </div>
+      {/* <div className="table" style={{ fontSize: "30px" }}>
+        Total Score: {props.totalScore}
+      </div> */}
       Games: {props.games}
     </>
   );

@@ -2,11 +2,11 @@ import React from "react";
 import { Game } from "./Game";
 import { Interface } from "./Interface";
 import { YourResult } from "./YourResult";
-import { Ranking } from "./Ranking";
+import { Scoring } from "./Scoring";
 import "./App.css";
 
 class App extends React.Component {
-  score = 0;
+  score = [];
   state = {
     games: 0,
     dice1: "",
@@ -41,7 +41,7 @@ class App extends React.Component {
   };
 
   clearState = () => {
-    this.score = 0;
+    this.score = [];
     this.setState({
       dice1: "",
       dice2: "",
@@ -69,7 +69,7 @@ class App extends React.Component {
           <YourResult allstates={this.state} />
         </div>
         <Game results={this.state} />
-        <Ranking
+        <Scoring
           score={this.score}
           dice1={this.state.dice1}
           dice2={this.state.dice2}
