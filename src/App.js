@@ -1,25 +1,84 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Game } from "./Game";
+import { Interface } from "./Interface";
+import { YourResult } from "./YourResult";
+import { Ranking } from "./Ranking";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hi <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  score = 0;
+  state = {
+    games: 0,
+    dice1: "",
+    dice2: "",
+    dice3: "",
+    dice4: "",
+    dice5: "",
+    one:
+      "https://game-icons.net/icons/ffffff/000000/1x1/delapouite/dice-six-faces-one.svg",
+    two:
+      "https://game-icons.net/icons/ffffff/000000/1x1/delapouite/dice-six-faces-two.svg",
+    three:
+      "https://game-icons.net/icons/ffffff/000000/1x1/delapouite/dice-six-faces-three.svg",
+    four:
+      "https://game-icons.net/icons/ffffff/000000/1x1/delapouite/dice-six-faces-four.svg",
+    five:
+      "https://game-icons.net/icons/ffffff/000000/1x1/delapouite/dice-six-faces-five.svg",
+    six:
+      "https://game-icons.net/icons/ffffff/000000/1x1/delapouite/dice-six-faces-six.svg"
+  };
+
+  startGame = () => {
+    this.setState({
+      dice1: Math.floor(Math.random() * 6) + 1,
+      dice2: Math.floor(Math.random() * 6) + 1,
+      dice3: Math.floor(Math.random() * 6) + 1,
+      dice4: Math.floor(Math.random() * 6) + 1,
+      dice5: Math.floor(Math.random() * 6) + 1,
+      games: this.state.games + 1
+    });
+
+  };
+
+  clearState = () => {
+    this.score = 0;
+    this.setState({
+      dice1: "",
+      dice2: "",
+      dice3: "",
+      dice4: "",
+      dice5: "",
+      games: 0
+    });
+  };
+
+  render() {
+    return (
+      <>
+        <Interface
+          games={this.state.games}
+          clearState={this.clearState}
+          startGame={this.startGame}
+          dice1={this.state.dice1}
+          dice2={this.state.dice2}
+          dice3={this.state.dice3}
+          dice4={this.state.dice4}
+          dice5={this.state.dice5}
+        />
+        <div className="effects">
+          <YourResult allstates={this.state} />
+        </div>
+        <Game results={this.state} />
+        <Ranking
+          score={this.score}
+          dice1={this.state.dice1}
+          dice2={this.state.dice2}
+          dice3={this.state.dice3}
+          dice4={this.state.dice4}
+          dice5={this.state.dice5}        />
+      </>
+    );
+  }
 }
 
 export default App;
