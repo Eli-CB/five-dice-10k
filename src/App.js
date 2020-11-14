@@ -59,11 +59,6 @@ class App extends React.Component {
           games={this.state.games}
           clearState={this.clearState}
           startGame={this.startGame}
-          dice1={this.state.dice1}
-          dice2={this.state.dice2}
-          dice3={this.state.dice3}
-          dice4={this.state.dice4}
-          dice5={this.state.dice5}
         />
         <div className="effects">
           <YourResult allstates={this.state} />
