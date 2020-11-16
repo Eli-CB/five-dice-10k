@@ -13,7 +13,23 @@ In order to run the application locally, please follow the following instruction
 4. run `npm start`
 5. wait for your browser to open or nagivate to `localhost:3000`
 
+### List of Known Bugs:
+- No ability to roll less than 5 dice
+- Turn score not updated with rolls 
+- Finishing over 10,000 does not keep score properly
+
 # Rules and Scoring
+### Single Player Rules:
+Try to reach **exactly 10,000 points** in as **few turns as possible**.
+As long as you keep scoring over 0 after any number of dice are rolled, you may continue your turn. If all five dice are used to score points, you may roll all five again.
+Add points to your total by finishing your turn, done by pressing the end turn button. Rolling a 0 will automatically end your turn and re-roll for you.
 
+### Scoring:
+- 1's and 5's are worth 100 and 50 respectively.
+- Any three-of-a-kind is worth 100 multiplied by the number (ie. three 6's is worth 600).
+- Any four-of-a-kind is worth double the three-of-a-kind, and so on for five-of-a-kind.
+- A full house (three-of-a-kind plus a pair) is worth the three-of-a-kind value plus the pair's number times 100.
+- A small straight comprising 4 dice is worth 250, a large straight comprising all 5 is worth 500
 
-# List of Improvements
+This roll:
+**1 - 3 - 2 - 2 - 2** would be worth 300 points. Three-of-a-kind 2's is 200 plus the 1 worth 100 makes 300. In this case the 3 is not worth any points.
