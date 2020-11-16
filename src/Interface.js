@@ -13,7 +13,7 @@ export const Interface = props => {
         width="10%"
         src="https://game-icons.net/icons/ffffff/000000/1x1/delapouite/perspective-dice-six-faces-random.svg"
       />
-      <span style={{ cursor: "pointer" }} onClick={props.endTurn}>
+      <span className="endTurn" style={{cursor: "pointer"}} onClick={props.endTurn}>
         End Turn
       </span>
       <div className="table" style={{ fontSize: "20px" }}>

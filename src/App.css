@@ -60,9 +60,9 @@
 .draw {
   color: white;
   background: rgb(93, 98, 168);
-  padding: 5px;
+  padding: 10px;
   border-radius: 10px;
-  width: 200px;
+  width: 480px;
   margin: 0 auto;
 }
 
@@ -84,6 +84,21 @@ span {
 
 span:hover {
   background: rgb(138, 49, 49);
+  transition: 0.5s;
+}
+
+.endTurn {
+  display: inline-block;
+  width: 80px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background: rgb(179, 166, 61);
+  color: white;
+  padding: 5px 20px;
+}
+
+.endTurn:hover {
+  background: rgb(143, 132, 49);
   transition: 0.5s;
 }
 

@@ -1,5 +1,4 @@
 import React from "react";
-import { Game } from "./Game";
 import { Interface } from "./Interface";
 import { YourResult } from "./YourResult";
 import { Scoring } from "./Scoring";
@@ -33,7 +32,7 @@ class App extends React.Component {
 
   rollDice = () => {
     this.setState({
-      //if a die is selected do not roll 'dice?: this.state.dice?' 
+      // TODO - if a die is selected do not roll 
       dice1: Math.floor(Math.random() * 6) + 1,
       dice2: Math.floor(Math.random() * 6) + 1,
       dice3: Math.floor(Math.random() * 6) + 1,
@@ -47,13 +46,10 @@ class App extends React.Component {
 
   };
 
-  updateScore = () => {
-    this.setState({
-    
-
-    });
+  updateTurnScore = (score) => {
+    this.state.turnScore = score;
   };
-
+ 
   endTurn = () => {
     this.setState({
       dice1: Math.floor(Math.random() * 6) + 1,
@@ -65,21 +61,11 @@ class App extends React.Component {
       turnsCount: this.state.turnsCount + 1,
       turnScore: 0,
       totalScore: this.state.totalScore + this.state.turnScore
-    })
-  }
+    });
+  };
 
-  rolledZero = () => {
-    this.setState({
-      dice1: Math.floor(Math.random() * 6) + 1,
-      dice2: Math.floor(Math.random() * 6) + 1,
-      dice3: Math.floor(Math.random() * 6) + 1,
-      dice4: Math.floor(Math.random() * 6) + 1,
-      dice5: Math.floor(Math.random() * 6) + 1,
-      rollsCount: this.state.rollsCount + 1,
-      turnsCount: this.state.turnsCount + 1,
-      turnScore: 0,
-      totalScore: this.state.totalScore
-    })
+  overScored = (score) => {
+    this.state.turnScore -= score;
   }
 
   clearState = () => {
@@ -113,12 +99,14 @@ class App extends React.Component {
           totalScore={this.state.totalScore}
           turnScore={this.state.turnScore}
           rolledZero={this.rolledZero}
-          updateScore={this.updateScore}
+          updateTurnScore={this.updateTurnScore}
+          overScored={this.overScored}
           dice1={this.state.dice1}
           dice2={this.state.dice2}
           dice3={this.state.dice3}
           dice4={this.state.dice4}
-          dice5={this.state.dice5}        />
+          dice5={this.state.dice5}
+        />
       </>
     );
   }

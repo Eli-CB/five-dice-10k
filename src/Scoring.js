@@ -2,34 +2,56 @@ import React from "react";
 
 export const Scoring = props => {
   let roll = [props.dice1, props.dice2, props.dice3, props.dice4, props.dice5];
+
   let trueTotalRollScore = trueRollScore(roll);
-  const turnScore = 0;
+
 
   if (props.dice1 === "") {
     return <h1>Start Game!</h1>;
+
   } else if(trueTotalRollScore === 0) {
-    return <h1 className="lost">Rolled a 0! Turn finished.</h1>;
-  }
-  //props.totalScore += trueTotalRollScore;
-  //let totalScore = addTotal(props.score);
-  console.log(props.totalScore);
-  if (props.totalScore === 10000) {
-    return <h1 className="won">You Won!</h1>;
-  } else if (props.totalScore > 10000) {
-    //props..pop();
-    //totalScore = addTotal(props.score);
     return (
-      <h2>Over target score, try again. <br></br>
-      Roll Score: {trueTotalRollScore} &nbsp;
-      Turn Score: {turnScore} &nbsp;
-      Total Score: {props.totalScore} &nbsp;
-      </h2>
+      <div>
+        <h2>
+          Roll Score: {trueTotalRollScore} &nbsp;
+          Turn Score: {props.turnScore} &nbsp;
+          Total Score: {props.totalScore}
+        </h2>
+        <h1 className="lost">Rolled a 0! Turn finished.</h1>
+      </div>
     );
+
+  } else if ((props.totalScore + props.turnScore) === 10000) {
+    return (
+      <div>
+        <h2>
+          Roll Score: {trueTotalRollScore} &nbsp;
+          Turn Score: {props.turnScore} &nbsp;
+          Total Score: {props.totalScore}
+        </h2>
+        <h1 className="won">You Won!</h1>
+      </div>
+    );
+
+  } else if ((props.totalScore + props.turnScore) > 10000) {
+    props.overScored(trueTotalRollScore);
+    return (
+      <div>
+        <h2>
+          Roll Score: {trueTotalRollScore} &nbsp;
+          Turn Score: {props.turnScore} &nbsp;
+          Total Score: {props.totalScore}
+        </h2>
+        <h1 className="draw">Over target score, try again.</h1>
+      </div>
+    );
+
   } else {
+    props.updateTurnScore(trueTotalRollScore);
     return (
       <h2>
         Roll Score: {trueTotalRollScore} &nbsp;
-        Turn Score: {turnScore} &nbsp;
+        Turn Score: {props.turnScore} &nbsp;
         Total Score: {props.totalScore}
       </h2>
     );
@@ -106,12 +128,4 @@ function trueRollScore (dice) {
     }
   }
   return result;
-}
-
-function addTotal(scoreList) {
-  let total = 0;
-  for(let i in scoreList) {
-    total += scoreList[i];
-  }
-  return total/2;
 }
