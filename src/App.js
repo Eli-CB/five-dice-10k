@@ -6,15 +6,18 @@ import { Scoring } from "./Scoring";
 import "./App.css";
 
 class App extends React.Component {
-  score = [];
   state = {
-    games: 0,
+    rollsCount: 0,
+    turnsCount: 0,
+    rollScore: 0,
+    turnScore: 0,
+    totalScore: 0,
     dice1: "",
     dice2: "",
     dice3: "",
     dice4: "",
     dice5: "",
-    one:
+    one: 
       "https://game-icons.net/icons/ffffff/000000/1x1/delapouite/dice-six-faces-one.svg",
     two:
       "https://game-icons.net/icons/ffffff/000000/1x1/delapouite/dice-six-faces-two.svg",
@@ -28,27 +31,68 @@ class App extends React.Component {
       "https://game-icons.net/icons/ffffff/000000/1x1/delapouite/dice-six-faces-six.svg"
   };
 
-  startGame = () => {
+  rollDice = () => {
+    this.setState({
+      //if a die is selected do not roll 'dice?: this.state.dice?' 
+      dice1: Math.floor(Math.random() * 6) + 1,
+      dice2: Math.floor(Math.random() * 6) + 1,
+      dice3: Math.floor(Math.random() * 6) + 1,
+      dice4: Math.floor(Math.random() * 6) + 1,
+      dice5: Math.floor(Math.random() * 6) + 1,
+      rollsCount: this.state.rollsCount + 1,
+      turnsCount: this.state.turnsCount,
+      turnScore: this.state.turnScore,
+      totalScore: this.state.totalScore,
+    });
+
+  };
+
+  updateScore = () => {
+    this.setState({
+    
+
+    });
+  };
+
+  endTurn = () => {
     this.setState({
       dice1: Math.floor(Math.random() * 6) + 1,
       dice2: Math.floor(Math.random() * 6) + 1,
       dice3: Math.floor(Math.random() * 6) + 1,
       dice4: Math.floor(Math.random() * 6) + 1,
       dice5: Math.floor(Math.random() * 6) + 1,
-      games: this.state.games + 1
-    });
+      rollsCount: this.state.rollsCount + 1,
+      turnsCount: this.state.turnsCount + 1,
+      turnScore: 0,
+      totalScore: this.state.totalScore + this.state.turnScore
+    })
+  }
 
-  };
+  rolledZero = () => {
+    this.setState({
+      dice1: Math.floor(Math.random() * 6) + 1,
+      dice2: Math.floor(Math.random() * 6) + 1,
+      dice3: Math.floor(Math.random() * 6) + 1,
+      dice4: Math.floor(Math.random() * 6) + 1,
+      dice5: Math.floor(Math.random() * 6) + 1,
+      rollsCount: this.state.rollsCount + 1,
+      turnsCount: this.state.turnsCount + 1,
+      turnScore: 0,
+      totalScore: this.state.totalScore
+    })
+  }
 
   clearState = () => {
-    this.score = [];
     this.setState({
       dice1: "",
       dice2: "",
       dice3: "",
       dice4: "",
       dice5: "",
-      games: 0
+      rollsCount: 0,
+      turnsCount: 0,
+      turnScore: 0,
+      totalScore: 0
     });
   };
 
@@ -56,16 +100,20 @@ class App extends React.Component {
     return (
       <>
         <Interface
-          games={this.state.games}
+          rollsCount={this.state.rollsCount}
+          turnsCount={this.state.turnsCount}
           clearState={this.clearState}
-          startGame={this.startGame}
+          rollDice={this.rollDice}
+          endTurn={this.endTurn}
         />
         <div className="effects">
           <YourResult allstates={this.state} />
         </div>
-        <Game results={this.state} />
         <Scoring
-          score={this.score}
+          totalScore={this.state.totalScore}
+          turnScore={this.state.turnScore}
+          rolledZero={this.rolledZero}
+          updateScore={this.updateScore}
           dice1={this.state.dice1}
           dice2={this.state.dice2}
           dice3={this.state.dice3}

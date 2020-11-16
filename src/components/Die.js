@@ -1,28 +1,29 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-class Die extends Component {
+function Die () {
 
-    // constructor(props) {
-    //     super(props);
-    // }
+    const [selected, setSelected] = useState(false);
 
-	state = {
-        name: "Die Component",
-        roll: 1
-	}
-
-    render() {
-        return (
-            numDiceResult(Math.floor(Math.random() * 6) + 1)
-        )
-    }
-
-
+    return (
+        <div>
+            <button>
+                <img alt="dice" width="50%" src={"https://game-icons.net/icons/ffffff/000000/1x1/delapouite/dice-six-faces-one.svg"} 
+                    onClick={() => {
+                        if(selected) {
+                            setSelected(false);
+                        } else {
+                            setSelected(true);
+                        }
+                    }}
+                />
+            </button>
+        </div>
+    )
 }
  
 export default Die;
 
-function numDiceResult (num) {
+function numDieResult (num) {
     if (num === 1) {    
         return (
             <img alt="dice" width="50%" src={"https://game-icons.net/icons/ffffff/000000/1x1/delapouite/dice-six-faces-one.svg"} />

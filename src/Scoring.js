@@ -3,14 +3,37 @@ import React from "react";
 export const Scoring = props => {
   let roll = [props.dice1, props.dice2, props.dice3, props.dice4, props.dice5];
   let trueTotalRollScore = trueRollScore(roll);
-  props.score.push(trueTotalRollScore);
-  const totalScore = addTotal(props.score);
-  return (
-    <h2>
-      Roll Score: {trueTotalRollScore} <br></br>
-      Total Score: {totalScore}
-    </h2>
-  );
+  const turnScore = 0;
+
+  if (props.dice1 === "") {
+    return <h1>Start Game!</h1>;
+  } else if(trueTotalRollScore === 0) {
+    return <h1 className="lost">Rolled a 0! Turn finished.</h1>;
+  }
+  //props.totalScore += trueTotalRollScore;
+  //let totalScore = addTotal(props.score);
+  console.log(props.totalScore);
+  if (props.totalScore === 10000) {
+    return <h1 className="won">You Won!</h1>;
+  } else if (props.totalScore > 10000) {
+    //props..pop();
+    //totalScore = addTotal(props.score);
+    return (
+      <h2>Over target score, try again. <br></br>
+      Roll Score: {trueTotalRollScore} &nbsp;
+      Turn Score: {turnScore} &nbsp;
+      Total Score: {props.totalScore} &nbsp;
+      </h2>
+    );
+  } else {
+    return (
+      <h2>
+        Roll Score: {trueTotalRollScore} &nbsp;
+        Turn Score: {turnScore} &nbsp;
+        Total Score: {props.totalScore}
+      </h2>
+    );
+  }
 };
 
 // TODO: unpack ofAKind, fullHouse, and straight checks into their own functions
@@ -32,7 +55,7 @@ function trueRollScore (dice) {
           }
           return dice[k] * 100 * 2 * 2;
         }
-        i++;
+        i += 3;
       // if there is a full house
       } else if(((dice[0] === dice[1]) && k === 2) || ((dice[4] === dice[3]) && k === 0)) {
         if(k === 2) {
@@ -72,7 +95,6 @@ function trueRollScore (dice) {
           result = 50;
         }
       }
-
       result += 250;
       return result;
     // if the die is a 1
@@ -82,9 +104,7 @@ function trueRollScore (dice) {
     } else if(dice[i] === 5) {
       result += 50;
     }
-
   }
-
   return result;
 }
 
