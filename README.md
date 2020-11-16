@@ -1,7 +1,8 @@
 # Five Dice 10,000 
+[Demo Link](https://five-dice-10k.vercel.app/ "Five Dice 10,000 Demo")
 
-A game with similar rules to [Farkle](https://en.wikipedia.org/wiki/Farkle "Farkle")
- or [Dice 10,000](https://en.wikipedia.org/wiki/Dice_10000 "Dice 10,000"), only played with 5 dice and a steal roll rule. Players are given the chance to add on to a roll that the last player passed on (not supported in single player mode). A more detailed rules list can be found under *Rules and Scoring* below.
+A game with similar rules to [Farkle](https://en.wikipedia.org/wiki/Farkle "Farkle Wikipedia")
+ or [Dice 10,000](https://en.wikipedia.org/wiki/Dice_10000 "Dice 10,000 Wikipedia"), only played with 5 dice and a steal roll rule. Players are given the chance to add on to a roll that the last player passed on (not supported in single player mode). A more detailed rules list can be found under *Rules and Scoring* below.
 
 ## Running the Application
 
